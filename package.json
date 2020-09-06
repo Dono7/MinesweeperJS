@@ -1,0 +1,25 @@
+{
+  "name": "minesweeperjs",
+  "version": "1.0.0",
+  "description": "Free minesweeper javascript library\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dand efficent Minesweeper javascript library",
+  "main": "\u001b[D\u001b[D\u001b[C\u001b[C",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dono7/MinesweeperJS.git"
+  },
+  "keywords": [
+    "Minesweeper",
+    "Javascript",
+    "ES6",
+    "Free"
+  ],
+  "author": "Donovan Trinh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dono7/MinesweeperJS/issues"
+  },
+  "homepage": "https://github.com/Dono7/MinesweeperJS#readme"
+}
