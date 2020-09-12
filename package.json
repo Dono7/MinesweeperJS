@@ -1,10 +1,10 @@
 {
   "name": "minesweeperjs",
-  "version": "1.0.0",
-  "description": "Free minesweeper javascript library\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dand efficent Minesweeper javascript library",
+  "version": "0.1.0",
+  "description": "Free minesweeper javascript library. Easy to use and efficent Minesweeper javascript library",
   "main": "\u001b[D\u001b[D\u001b[C\u001b[C",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "echo \"We need to install gulp to build our js minified library\" && exit 1"
   },
   "repository": {
     "type": "git",
