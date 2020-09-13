@@ -4,7 +4,7 @@
   "description": "Free minesweeper javascript library. Easy to use and efficent Minesweeper javascript library",
   "main": "\u001b[D\u001b[D\u001b[C\u001b[C",
   "scripts": {
-    "build": "echo \"We need to install gulp to build our js minified library\" && exit 1"
+    "build": "gulp js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "browserify": "^16.5.2",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",
+    "gulp-inject-string": "^1.1.2",
     "gulp-rename": "^2.0.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
