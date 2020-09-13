@@ -1,5 +1,3 @@
-'use strict';
-
 class Cell {
 
     constructor(){
@@ -19,4 +17,4 @@ class Cell {
 
 }
 
-exports.Cell = Cell ;
+export default Cell ;

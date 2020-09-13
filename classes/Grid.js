@@ -1,8 +1,3 @@
-'use strict';
-
-import Cell from './Cell';
-
-
 class Grid {
 
     // Should handle param errors
@@ -22,7 +17,7 @@ class Grid {
         this.areBombsSet = false;
     }
 
-    initMap = () => {
+    initMap() {
         this.map = new Array(this.height).fill(0).map(() => new Array(this.width).fill(0).map(() => new Cell()));
         return this;
     }
@@ -104,11 +99,8 @@ class Grid {
             if(y < this.height - 1)
                 this.reveal(x,y+1)
         }
-
     }
-
-
-
 }
 
-exports.Grid = Grid ;
+
+export default Grid ;
