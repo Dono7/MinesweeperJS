@@ -4,7 +4,7 @@
 
 - [x] Add gulp setup to 'compile' javascript
 - [ ] Add docker environnement
-- [ ] Add headers to compiled lib (see[ gulp-inject-string](https://www.npmjs.com/package/gulp-inject-string))
+- [x] Add headers to compiled lib 
 - [ ] Add parameters restrictions (types and values)
 - [ ] Add unit tests
 - [ ] Release v0.1.0 when ready
