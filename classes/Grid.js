@@ -1,3 +1,9 @@
+import Checker from "./Checker"
+
+
+const maxGirdSize = 1000
+
+
 class Grid {
 
     // Should handle param errors
@@ -6,14 +12,22 @@ class Grid {
         width = 9,
         height = 9,
         name = "Untitled",
-        nbbombs = "10",
-        map} = {}
+        nbbombs = 10
+        } = {}
     ){
+        // Check parameters
+        let c = [
+            new Checker(width,'width').int().min(9).max(maxGirdSize),
+            new Checker(height,'width').int().min(9).max(maxGirdSize),
+            new Checker(name,'name').string().notEmpty(),
+            new Checker(nbbombs,'nbbomb').int().min(Math.max(1, Math.floor(width * height / 100)))
+        ]
+        c.forEach(check => { if(! check.ok) throw new Error(check.msg) })
+
         this.width = width
         this.height = height
         this.name = name
         this.nbbombs = nbbombs
-        this.map = map;
         this.areBombsSet = false;
     }
 
@@ -22,8 +36,14 @@ class Grid {
         return this;
     }
 
-    // Assume that nbbombs is a valid nb
     setBombs(clickedX, clickedY) {
+        let c = [
+            new Checker(clickedX,'clickedX').int().min(0).max(maxGirdSize - 1),
+            new Checker(clickedY,'clickedY').int().min(0).max(maxGirdSize - 1),
+            new Checker(this.map,'map').def()
+        ]
+        c.forEach(check => { if(! check.ok) throw new Error(check.msg) })
+
         if(this.areBombsSet) 
             return this;
 
@@ -54,6 +74,21 @@ class Grid {
     }
 
     addBomb(bombIndex, y) {
+        if(y !== undefined) {
+            let c = [
+                new Checker(bombIndex,'bombIndex').int().min(0).max(this.width - 1),
+                new Checker(y,'y').int().min(0).max(this.height - 1),
+                new Checker(this.map,'map').def()
+            ]
+            c.forEach(check => { if(! check.ok) throw new Error(check.msg) })
+        } else {
+            let c = [
+                new Checker(bombIndex,'bombIndex').int().min(0).max(this.height * this.width - 1),
+                new Checker(y,'y').undef()
+            ]
+            c.forEach(check => { if(! check.ok) throw new Error(check.msg) })
+        }
+
         let x = y ? bombIndex : Math.floor(bombIndex / this.height);
             y = y ? y : bombIndex % this.width ;
         
@@ -70,6 +105,12 @@ class Grid {
     }
 
     show() {
+        let c = [
+            new Checker(this.map,'map').def()
+        ]
+        c.forEach(check => { if(! check.ok) throw new Error(check.msg) })
+        
+
         let output = `${this.name} (${this.width}x${this.height}, ${this.nbbombs} bombs) \n`
         this.map.forEach( line => { 
             line.forEach(c => {
@@ -84,6 +125,12 @@ class Grid {
     }
 
     reveal(x, y) {
+        let c = [
+            new Checker(x,'x').int().min(0).max(this.width - 1),
+            new Checker(y,'y').int().min(0).max(this.height - 1)
+        ]
+        c.forEach(check => { if(! check.ok) throw new Error(check.msg) })
+
         if(this.map[y][x].isRevealed)
             return;
 
