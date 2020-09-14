@@ -20,6 +20,7 @@ const jsEntry = 'index.js'
 const jsSRC = './classes/'
 const jsDEST = './lib/'
 const jsFILES = [jsEntry]
+const jsWATCH = './classes/*.js'
 
 // File Header
 const { version, author, license } = require('./package.json')
@@ -48,9 +49,15 @@ function js(done) {
     done()
 }
 
+// Watch JS
+function js_watch(done) {
+    watch(jsWATCH, parallel(js))
+    done()
+}
 
 // Export tasks
 // Run it with `gulp js` or just `gulp`
 task('js',js)
+task('watch', js_watch)
 task('default', parallel(js))
-console.log(header)
+

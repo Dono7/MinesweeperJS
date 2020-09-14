@@ -2,9 +2,11 @@
   "name": "minesweeperjs",
   "version": "0.1.0",
   "description": "Free minesweeper javascript library. Easy to use and efficent Minesweeper javascript library",
-  "main": "\u001b[D\u001b[D\u001b[C\u001b[C",
+  "main": "classes/index.js",
   "scripts": {
-    "build": "gulp js"
+    "build": "gulp",
+    "build js": "gulp js",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -13,8 +15,9 @@
   "keywords": [
     "Minesweeper",
     "Javascript",
-    "ES6",
-    "Free"
+    "Free",
+    "Démineur",
+    "Game"
   ],
   "author": "Donovan Trinh",
   "license": "MIT",
