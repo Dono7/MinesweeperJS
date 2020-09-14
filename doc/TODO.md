@@ -5,7 +5,8 @@
 - [x] Add gulp setup to 'compile' javascript
 - [ ] Add docker environnement
 - [x] Add headers to compiled lib 
-- [ ] Add parameters restrictions (types and values)
+- [x] Add parameters restrictions (types and values)
+- [ ] Improve Checker class by throwing error inside the Checker
 - [ ] Add unit tests
 - [ ] Release v0.1.0 when ready
 
