@@ -2,7 +2,7 @@
   "name": "minesweeperjs",
   "version": "0.1.0",
   "description": "Free minesweeper javascript library. Easy to use and efficent Minesweeper javascript library",
-  "main": "classes/index.js",
+  "main": "lib/index-0.1.0.min.js",
   "scripts": {
     "build": "gulp",
     "build js": "gulp js",
@@ -25,7 +25,13 @@
     "url": "https://github.com/Dono7/MinesweeperJS/issues"
   },
   "homepage": "https://github.com/Dono7/MinesweeperJS#readme",
-  "dependencies": {
+  "dependencies": {},
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "babelify": "^10.0.0",
@@ -38,10 +44,5 @@
     "gulp-uglify": "^3.0.2",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
   }
 }
