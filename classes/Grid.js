@@ -34,7 +34,7 @@ class Grid {
         return this;
     }
 
-    setBombs(clickedX, clickedY) {
+    spawnBombs(clickedX, clickedY) {
         new Checker(clickedX,'clickedX').required().int().between(0, maxGirdSize - 1)
         new Checker(clickedY,'clickedY').required().int().between(0, maxGirdSize - 1)
         new Checker(this.map,'map').def()
@@ -68,6 +68,14 @@ class Grid {
         return this;
     }
 
+    spawnRdmBombs(){
+        new Checker(this.map,'map').def()
+
+        let x = Math.floor(Math.random() * this.map.length)
+        let y = Math.floor(Math.random() * this.map[0].length)
+        return this.spawnBombs(x,y)
+    }
+
     addBomb(bombIndex, y) {
         new Checker(this.map,'map').def()
         if(y !== undefined) {
@@ -93,13 +101,16 @@ class Grid {
         return this;
     }
 
-    show() {
+    show(reveal = false) {
+        new Checker(reveal,'reveal').def().bool();
         new Checker(this.map,'map').def()
 
         let output = `${this.name} (${this.width}x${this.height}, ${this.nbbombs} bombs) \n`
         this.map.forEach( line => { 
             line.forEach(c => {
-                output += c.isRevealed ? "_" : "-"
+                if(reveal) {
+                    output += c.isRevealed ? "-" : " "
+                }
                 output += c.isBomb ? "x " : c.nb + " "
             })
             output += "\n"
@@ -129,6 +140,8 @@ class Grid {
             if(y < this.height - 1)
                 this.reveal(x,y+1)
         }
+
+        return this;
     }
 }
 

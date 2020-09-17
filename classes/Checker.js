@@ -37,9 +37,18 @@ class Checker {
     }
 
     string() {
-        if(this.ok &&( ! (typeof this.v === 'string' ||  this.v instanceof String ) ) ) {
+        if(this.ok && ( ! (typeof this.v === 'string' ||  this.v instanceof String ) ) ) {
             this.ok = false
             this.msg = `The parameter ${this.n} must be a string`
+            this.fire()
+        }
+        return this;
+    }
+
+    bool(){
+        if(this.ok && (typeof this.v !== "boolean")) {
+            this.ok = false
+            this.msg = `The parameter ${this.n} must be a boolean value`
             this.fire()
         }
         return this;
@@ -55,7 +64,7 @@ class Checker {
     }
 
     undef() {
-        if(this.ok && f( this.v !== undefined ) ) {
+        if(this.ok && ( this.v !== undefined ) ) {
             this.ok = false
             this.msg = `The parameter ${this.n} should be undefined`
             this.fire()
