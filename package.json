@@ -1,8 +1,8 @@
 {
   "name": "play-minesweeperjs",
   "description": "Free minesweeper javascript library. Easy to use and efficent Minesweeper javascript library",
-  "version":        "0.2.0",
-  "main": "lib/index-0.2.0.min.js",
+  "version":        "0.2.1",
+  "main": "lib/index-0.2.1.min.js",
   "scripts": {
     "build": "gulp",
     "build js": "gulp js",
