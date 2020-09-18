@@ -14,7 +14,7 @@ npm install play-minesweeperjs
 ```
 Then, import it in your project (in a Javascript file)
 ```js
-import 'minesweeper' from 'play-minesweeperjs'
+import { Grid } from 'play-minesweeperjs'
 
 // Code ...
 ```
