@@ -1,3 +1,6 @@
+import Checker from "./Checker.js"
+
+
 class Cell {
 
     constructor(){
@@ -17,4 +20,5 @@ class Cell {
 
 }
 
-export default Cell ;
+
+export default Cell

@@ -102,5 +102,4 @@ class Checker {
 
 }
 
-
-export default Checker ;
+export default Checker

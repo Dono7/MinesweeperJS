@@ -16,10 +16,10 @@ var sourcemaps = require('gulp-sourcemaps')
 var injecter = require('gulp-inject-string')
 
 // Path setup
-const jsEntry = 'index.js'
+const jsCLIENT = 'client.js'
 const jsSRC = './classes/'
 const jsDEST = './lib/'
-const jsFILES = [jsEntry]
+const jsFILES = ['server.js','client.js']
 const jsWATCH = './classes/*.js'
 
 // File Header
@@ -29,23 +29,20 @@ const today = `${d.getFullYear()}/${d.getMonth().toString().padStart(2,'0')}/${d
 const header = `MinesweeperJS v${version} | by ${author} | Under ${license} License | Date: ${today} | Find more : https://github.com/Dono7/MinesweeperJS`
 
 // Gulp task : JS
-function js(done) {
-    jsFILES.map( function (entry) {
-        return browserify({
-            entries: [jsSRC + jsEntry]
-        })
-        .transform( babelify, { presets: ['@babel/preset-env'] } )
-        .bundle()
-        .pipe( source( entry) )
-        .pipe( rename({ extname: `-${version}.min.js`}) )
-        .pipe( buffer() )
-        // .pipe( sourcemaps.init({ loadMaps: false }) )
-        .pipe( uglify() )
-        .pipe( injecter.prepend(`/* ${header} */\n`) )
-        .pipe( injecter.append(`\n`) )
-        // .pipe( sourcemaps.write('.') )
-        .pipe( dest( jsDEST ))
-    })
+function client(done) {
+    return browserify({ entries: [jsSRC + jsCLIENT] })
+    .transform( babelify, { presets: ['@babel/preset-env'] } )
+    .bundle()
+    .pipe( source( jsCLIENT) )
+    .pipe( rename({ extname: `-${version}.min.js`}) )
+    .pipe( buffer() )
+    // .pipe( sourcemaps.init({ loadMaps: false }) )
+    .pipe( uglify() )
+    .pipe( injecter.prepend(`/* ${header} */\n`) )
+    .pipe( injecter.append(`\n`) )
+    // .pipe( sourcemaps.write('.') )
+    .pipe( dest( jsDEST ))
+    console.log('Done : '+jsDEST)
     done()
 }
 
@@ -57,7 +54,7 @@ function js_watch(done) {
 
 // Export tasks
 // Run it with `gulp js` or just `gulp`
-task('js',js)
+task('client',client)
 task('watch', js_watch)
-task('default', parallel(js))
+task('default', parallel(client))
 
