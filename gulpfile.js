@@ -22,6 +22,13 @@ const jsDEST = './lib/'
 const jsFILES = ['server.js','client.js']
 const jsWATCH = './classes/*.js'
 
+// New javascript build path
+// https://goede.site/transpile-and-minify-javascript-html-and-css-using-gulp-4
+const paths = {
+    source: "./classes",
+    build: "./build"
+}
+
 // File Header
 const { version, author, license } = require('./package.json')
 const d = new Date()
@@ -46,6 +53,24 @@ function client(done) {
     done()
 }
 
+function javascriptBuild() {
+    // Start by calling browserify with our entry pointing to our main javascript file
+    return (
+        browserify({
+            entries: [`${paths.source}/client.js`],
+            // Pass babelify as a transform and set its preset to @babel/preset-env
+            transform: [babelify.configure({ presets: ["@babel/preset-env"] })]
+        })
+            // Bundle it all up!
+            .bundle()
+            // Source the bundle
+            .pipe(source("client.js"))
+            .pipe( rename({ extname: `-${version}.min.js`}) )
+            // Then write the resulting files to a folder
+            .pipe(dest(`${paths.build}`))
+    );
+}
+
 // Watch JS
 function js_watch(done) {
     watch(jsWATCH, parallel(js))
@@ -54,7 +79,7 @@ function js_watch(done) {
 
 // Export tasks
 // Run it with `gulp js` or just `gulp`
+task('javascriptBuild',javascriptBuild)
 task('client',client)
 task('watch', js_watch)
 task('default', parallel(client))
-

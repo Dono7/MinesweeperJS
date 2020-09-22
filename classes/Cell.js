@@ -1,4 +1,4 @@
-import Checker from "./Checker.js"
+const Checker = require("./Checker.js")
 
 
 class Cell {
@@ -21,4 +21,4 @@ class Cell {
 }
 
 
-export default Cell
+module.exports = Cell

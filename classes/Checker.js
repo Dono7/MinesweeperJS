@@ -102,4 +102,4 @@ class Checker {
 
 }
 
-export default Checker
+module.exports = Checker

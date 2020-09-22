@@ -1,8 +1,9 @@
-import Checker from './Checker.js'
-import Cell from './Cell.js'
-import Grid from './Grid.js'
 
-//const Checker = require('./Checker')
+const Checker = require('./Checker')
+const Cell = require('./Cell')
+const Grid = require('./Grid')
+
+console.log("Hello from play-minesweeperjs client v2")
 
 var global = window || global
 global.Checker = Checker
@@ -11,4 +12,17 @@ global.Grid = Grid
 
 
 
-console.log('hello je suis le package minesweeper client')
+let g2 = new Grid({name:"exemple"}).initMap().show();
+
+
+
+
+
+
+// let g = new Checker("me","me");
+
+// console.log(g)
+
+// let g2 = new Grid({name:"exemple"}).initMap().show();
+
+// module.exports = { Checker , Cell, Grid }
