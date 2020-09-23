@@ -1,4 +1,5 @@
-import Checker from "./Checker"
+const Checker = require("./Checker.js")
+const Cell = require("./Cell.js")
 
 
 const minGirdSize = 9
@@ -145,5 +146,4 @@ class Grid {
     }
 }
 
-
-export default Grid ;
+module.exports = Grid
