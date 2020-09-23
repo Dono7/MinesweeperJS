@@ -26,7 +26,7 @@ const jsWATCH = './classes/*.js'
 // https://goede.site/transpile-and-minify-javascript-html-and-css-using-gulp-4
 const paths = {
     source: "./classes",
-    build: "./build"
+    build: "./lib"
 }
 
 // File Header
