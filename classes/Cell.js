@@ -1,3 +1,6 @@
+const Checker = require("./Checker.js")
+
+
 class Cell {
 
     constructor(){
@@ -17,4 +20,5 @@ class Cell {
 
 }
 
-export default Cell ;
+
+module.exports = Cell

@@ -1,8 +1,8 @@
 {
   "name": "play-minesweeperjs",
   "description": "Free minesweeper javascript library. Easy to use and efficent Minesweeper javascript library",
-  "version":        "0.2.1",
-  "main": "lib/index-0.2.1.min.js",
+  "version": "0.3.0",
+  "main": "classes/server2.js",
   "scripts": {
     "build": "gulp",
     "build js": "gulp js",
@@ -27,14 +27,10 @@
   },
   "homepage": "https://github.com/Dono7/MinesweeperJS#readme",
   "dependencies": {},
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
-  },
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
+    "babel-plugin-add-module-exports": "^1.0.4",
     "babelify": "^10.0.0",
     "browserify": "^16.5.2",
     "gulp": "^4.0.2",
