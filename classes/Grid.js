@@ -43,7 +43,8 @@ class Grid {
         if(this.areBombsSet) 
             return this;
 
-        let possibilities = [...Array(this.width * this.height - 1).keys()] ,
+        // Create an array of possible spawn coords 
+        let possibilities = [...Array(this.width * this.height - 2).keys()],
             clickedIndex = clickedY  * this.width + clickedX ,
             bombsCoords = [],
             tmpBombIndex;
@@ -51,21 +52,14 @@ class Grid {
         // Choose bombs coords
         for(let i = 0 ; i < this.nbbombs ; i++) {
             tmpBombIndex = possibilities.splice(Math.floor(Math.random()*possibilities.length),1)[0]
-            tmpBombIndex = (tmpBombIndex == clickedIndex) ? this.height * this.width : tmpBombIndex;
+            tmpBombIndex = (tmpBombIndex == clickedIndex) ? this.height * this.width - 1 : tmpBombIndex;
             bombsCoords.push(tmpBombIndex);
-        }
-
-        // Avoid bomb on the clicked cell
-        tmpBombIndex = bombsCoords.indexOf(clickedIndex)
-        if(tmpBombIndex > -1) {
-            bombsCoords.splice(tmpBombIndex,1)
-            bombsCoords.push(this.width * this.height)
         }
 
         // Add bombs into the map
         bombsCoords.forEach(bombIndex => this.addBomb(bombIndex));
 
-        this.bombsSet = true;
+        this.areBombsSet = true;
         return this;
     }
 
@@ -92,7 +86,7 @@ class Grid {
         
         for(let i = x - 1 ; i <= x + 1 ; i++) {
             for(let j = y - 1 ; j <= y + 1 ; j++) {
-                if(i >= 0 && j >= 0 && i < this.width && j < this.height && !(i == x && j == y)) {
+                if(i >= 0 && j >= 0 && i < this.height && j < this.width && !(i == x && j == y)) {
                     this.map[i][j].inc()
                 }
             }
