@@ -31,12 +31,20 @@ npm install play-minesweeperjs
 Then, import it in your project (in a Javascript file)
 ```js
 // Just what you need
-import { Grid } from 'play-minesweeperjs'
+const { Grid } = require('play-minesweeperjs')
 
 // Or all fonctions and classes
-import { Grid, Cell, Checker, MsInstalled } from 'play-minesweeperjs'
+const { Grid, Cell, Checker, MsInstalled } = require('play-minesweeperjs')
 ```
 Now, you can use Grid as a class in Node.
+
+## Check if the library is installed
+
+Run the `MsInstalled` function to see if the library is currently installed.
+```js
+MsInstalled()
+// Output in the console : 'MinesweeperJS is currently installed'
+```
 
 # Get started
 
@@ -93,8 +101,7 @@ Example (9x9, 12 bombs)
 
 ## Learn how to play
 
-See the complete [Get started](doc/GetStarted.md) guide to learn how to play and use this library.
-
+See the **[complete Get started guide](doc/GetStarted.md)** to learn how to play and use this library. Or take a look at **[the complete methods list](MethodsList.md)** to learn about the optional parameters of every method.
 # Contributing
 
 ## Want to contribute ?
