@@ -7,17 +7,36 @@ This is an open source library, so can you can use it for free. You can also con
 
 # Installation
 
-## With NPM
-For the moment, the package is called `play-minesweeperjs`. You can install it with the following command :
+## Client-side : In the browser (in HTML page)
+
+### Online file with Github Raw
+
+We can use the direct link to the github file to import the script in the client-side (where you can set whatever version you want in the file name). This is possible since v0.3.1. Import it in your web page :
+
+```html
+<script src="https://raw.githubusercontent.com/Dono7/MinesweeperJS/master/lib/client-0.3.1.min.js"></script>
+```
+
+Now you can play with the library in the console or in a script.
+
+### Download and use as local file
+
+You can also download the last version in the [lib](lib/) folder, and then import it in your project. Then, link it as a script in the head of your HTML file.
+
+## Server-side: With NPM
+For the moment, the package is called `play-minesweeperjs`. You can install it in a Node project with the following command :
 ```bash
 npm install play-minesweeperjs
 ```
 Then, import it in your project (in a Javascript file)
 ```js
+// Just what you need
 import { Grid } from 'play-minesweeperjs'
 
-// Code ...
+// Or all fonctions and classes
+import { Grid, Cell, Checker, MsInstalled } from 'play-minesweeperjs'
 ```
+Now, you can use Grid as a class in Node.
 
 # Get started
 
@@ -51,8 +70,7 @@ For the moment, you can only initialize a grid. In the futur, it will be possibl
 // Build a default 9x9 grid
 var g = new Grid(); 
 g.initMap();
-g.show(); // Show the grid in the console. Cool bug debugging
-
+g.show(); // Show the grid in the console. Cool for debugging
 
 // All methods can be chained
 var g = new Grid( {nbbombs: 12, name: "Example"} ).initMap().show() ;
@@ -81,10 +99,10 @@ See the complete [Get started](doc/GetStarted.md) guide to learn how to play and
 
 ## Want to contribute ?
 
-You want to suggest new features ? Please [open an issue (on GitHub)](https://github.com/Dono7/MinesweeperJS/issues), using the label `enhancement`.
+You want to suggest new features ? Please [open an issue (on GitHub)](https://github.com/Dono7/MinesweeperJS/issues).
 
-You are a developer ? Take a look at the [to do list](doc/TODO.md) to see if you can help me improving this repo. 
-If you want to add something that is not in the To Do List, you can also make a Pull Request (with the labels `enhancement`, `good first issue`, `improvement`, or `minor fix`).
+You are a developer ? Take a look at the [to do list](https://trello.com/b/tyBP7IQ0/minesweeperjs-todo-list) to see if you can help me improving this repo. 
+If you want to add something that is not in the To Do List, you can also make a Pull Request.
 
 ## Contributors Z
 
@@ -92,7 +110,7 @@ If you want to add something that is not in the To Do List, you can also make a 
 
 # Found a bug / Need help ?
 
-Please [open an issue (on GitHub)](https://github.com/Dono7/MinesweeperJS/issues) to request a change or report an issue. You can put the labels `bug` or `help wanted` on your issue.
+Please [open an issue (on GitHub)](https://github.com/Dono7/MinesweeperJS/issues) to request a change or report an issue.
 
 # License
 
