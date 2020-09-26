@@ -22,7 +22,7 @@ Now you can play with the library in the console or in a script.
 ### Download and use as local file
 
 You can also download the last version in the [lib](lib/) folder, and then import it in your project. Then, link it as a script in the head of your HTML file.
-
+ 
 ## Server-side: With NPM
 For the moment, the package is called `play-minesweeperjs`. You can install it in a Node project with the following command :
 ```bash
@@ -37,14 +37,6 @@ const { Grid } = require('play-minesweeperjs')
 const { Grid, Cell, Checker, MsInstalled } = require('play-minesweeperjs')
 ```
 Now, you can use Grid as a class in Node.
-
-## Check if the library is installed
-
-Run the `MsInstalled` function to see if the library is currently installed.
-```js
-MsInstalled()
-// Output in the console : 'MinesweeperJS is currently installed'
-```
 
 # Get started
 
@@ -101,7 +93,9 @@ Example (9x9, 12 bombs)
 
 ## Learn how to play
 
-See the **[complete Get started guide](doc/GetStarted.md)** to learn how to play and use this library. Or take a look at **[the complete methods list](MethodsList.md)** to learn about the optional parameters of every method.
+See the complete [Get started](doc/GetStarted.md) guide to learn how to play and use this library.
+
+
 # Contributing
 
 ## Want to contribute ?
