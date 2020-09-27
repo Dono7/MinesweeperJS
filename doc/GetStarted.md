@@ -9,6 +9,7 @@ Learn how to use the MinesweeperJS library to play minesweeper in Javascript !
 - [Generate the bombs](#generate-the-bombs)
 - [Reveal a cell](#reveal-a-cell)
 
+Take a look at [the complete methods list](MethodsList.md) to know what it is possible to do with this library.
 
 ## Build your first grid
 
