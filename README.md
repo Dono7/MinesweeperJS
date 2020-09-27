@@ -1,3 +1,7 @@
+[![npm](https://img.shields.io/npm/v/play-minesweeperjs?style=flat)](https://www.npmjs.com/package/play-minesweeperjs)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Dono7/MinesweeperJS?style=flat)](https://github.com/Dono7/MinesweeperJS)
+[![GitHub issues](https://img.shields.io/github/issues/Dono7/MinesweeperJS?style=flat)](https://github.com/Dono7/MinesweeperJS/issues)
+
 # MinesweeperJS
 
 MinesweeperJS is a free 'Minesweeper' game javascript library. 
@@ -22,7 +26,7 @@ Now you can play with the library in the console or in a script.
 ### Download and use as local file
 
 You can also download the last version in the [lib](lib/) folder, and then import it in your project. Then, link it as a script in the head of your HTML file.
-
+ 
 ## Server-side: With NPM
 For the moment, the package is called `play-minesweeperjs`. You can install it in a Node project with the following command :
 ```bash
@@ -31,10 +35,10 @@ npm install play-minesweeperjs
 Then, import it in your project (in a Javascript file)
 ```js
 // Just what you need
-import { Grid } from 'play-minesweeperjs'
+const { Grid } = require('play-minesweeperjs')
 
 // Or all fonctions and classes
-import { Grid, Cell, Checker, MsInstalled } from 'play-minesweeperjs'
+const { Grid, Cell, Checker, MsInstalled } = require('play-minesweeperjs')
 ```
 Now, you can use Grid as a class in Node.
 
@@ -61,39 +65,11 @@ var g = new Grid({
 }); 
 ```
 
-## Initialize the map and display grid in console
-
-When a grid is created, it is **not usable while the map has not been initialized**. 
-For the moment, you can only initialize a grid. In the futur, it will be possible to create a "custom map".
-
-```js
-// Build a default 9x9 grid
-var g = new Grid(); 
-g.initMap();
-g.show(); // Show the grid in the console. Cool for debugging
-
-// All methods can be chained
-var g = new Grid( {nbbombs: 12, name: "Example"} ).initMap().show() ;
-
-/* Result in console :
-
-Example (9x9, 12 bombs) 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-*/
-```
-
-
 ## Learn how to play
 
-See the complete [Get started](doc/GetStarted.md) guide to learn how to play and use this library.
+See the [Get started](doc/GetStarted.md) guide to learn how to play and use this library.
+See the [Methods list available and optional parameters](doc/MethodsList.md) to see the complete guide.
+
 
 # Contributing
 

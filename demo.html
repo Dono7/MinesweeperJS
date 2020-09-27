@@ -12,16 +12,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { background:#333 ; color:white; font-family: Roboto; }
+        a { color:deepskyblue }
     </style>
 </head>
 <body>
 
-    <h1>MinesweeperJS Demo</h1>
+    <h1>MinesweeperJS Demo File</h1>
 
-    <p>Open the console (press F12 or Ctrl+Shift+I) to test the console</p>
+    <p>Open the console (press F12 or Ctrl+Shift+I) to test the console. You can use-try-test the library in console.</p>
 
     <pre><code>
-// Display a grid in console 
+// Try to display a grid in console with thoses lines of code :
 var g = new Grid({
     name:"My test map",
     width:10,
@@ -30,5 +31,18 @@ var g = new Grid({
 }).initMap().spawnRdmBombs().show();
     </code></pre>
 
+    <p>See the <a href="https://github.com/Dono7/MinesweeperJS/blob/improve-doc/doc/GetStarted.md">Get Started guide</a> to learn how to use the library.</p>
+    <p>See the <a href="https://github.com/Dono7/MinesweeperJS/blob/improve-doc/doc/GetStarted.md">list of available methods and optional parameters</a></p>
+
+
+    <script>
+        console.log(`Try this :
+var g = new Grid({
+    name:"My test map",
+    width:10,
+    height:10,
+    nbbombs:30
+}).initMap().spawnRdmBombs().show();`)
+    </script>
 </body>
 </html>
