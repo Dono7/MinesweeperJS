@@ -1,3 +1,7 @@
+[![npm](https://img.shields.io/npm/v/play-minesweeperjs?style=flat)](https://www.npmjs.com/package/play-minesweeperjs)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Dono7/MinesweeperJS?style=flat)](https://github.com/Dono7/MinesweeperJS)
+[![GitHub issues](https://img.shields.io/github/issues/Dono7/MinesweeperJS?style=flat)](https://github.com/Dono7/MinesweeperJS/issues)
+
 # MinesweeperJS
 
 MinesweeperJS is a free 'Minesweeper' game javascript library. 
