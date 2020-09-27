@@ -61,39 +61,10 @@ var g = new Grid({
 }); 
 ```
 
-## Initialize the map and display grid in console
-
-When a grid is created, it is **not usable while the map has not been initialized**. 
-For the moment, you can only initialize a grid. In the futur, it will be possible to create a "custom map".
-
-```js
-// Build a default 9x9 grid
-var g = new Grid(); 
-g.initMap();
-g.show(); // Show the grid in the console. Cool for debugging
-
-// All methods can be chained
-var g = new Grid( {nbbombs: 12, name: "Example"} ).initMap().show() ;
-
-/* Result in console :
-
-Example (9x9, 12 bombs) 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 
-*/
-```
-
-
 ## Learn how to play
 
-See the complete [Get started](doc/GetStarted.md) guide to learn how to play and use this library.
+See the [Get started](doc/GetStarted.md) guide to learn how to play and use this library.
+See the [Methods list available and optional parameters](doc/MethodsList.md) to see the complete guide.
 
 
 # Contributing
