@@ -103,7 +103,7 @@ class Grid {
         return this;
     }
 
-    reveal(x, y) {
+    reveal(indexX, indexY) {
         const {x, y} = indexToCoord(indexX,indexY)
 
         if(this.map[x][y].isRevealed)
