@@ -81,7 +81,7 @@ class Grid {
             new Checker(y,'y').undef()
         }
 
-        let x = y ? bombIndex : Math.floor(bombIndex / this.height);
+        let x = y ? bombIndex : Math.floor(bombIndex / this.width);
             y = y ? y : bombIndex % this.width ;
         
         for(let i = x - 1 ; i <= x + 1 ; i++) {
