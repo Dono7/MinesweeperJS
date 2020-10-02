@@ -36,16 +36,14 @@ class Grid {
     }
 
     spawnBombs(clickedX, clickedY) {
-        new Checker(clickedX,'clickedX').required().int().between(0, maxGirdSize - 1)
-        new Checker(clickedY,'clickedY').required().int().between(0, maxGirdSize - 1)
-        new Checker(this.map,'map').def()
+        const {x, y} = indexToCoord(clickedX,clickedY)
 
         if(this.areBombsSet) 
             return this;
 
         // Create an array of possible spawn coords 
         let possibilities = [...Array(this.width * this.height - 2).keys()],
-            clickedIndex = clickedY  * this.width + clickedX ,
+            clickedIndex = y  * this.width + x ,
             bombsCoords = [],
             tmpBombIndex;
 
@@ -71,18 +69,8 @@ class Grid {
         return this.spawnBombs(x,y)
     }
 
-    addBomb(bombIndex, y) {
-        new Checker(this.map,'map').def()
-        if(y !== undefined) {
-            new Checker(bombIndex,'bombIndex').required().int().between(0, this.width - 1)
-            new Checker(y,'y').required().int().min(0).max(this.height - 1)
-        } else {
-            new Checker(bombIndex,'bombIndex').required().int().between(0, this.height * this.width - 1)
-            new Checker(y,'y').undef()
-        }
-
-        let x = y ? bombIndex : Math.floor(bombIndex / this.width);
-            y = y ? y : bombIndex % this.width ;
+    addBomb(indexX, indexY) {
+        const {x, y} = indexToCoord(indexX,indexY)
         
         for(let i = x - 1 ; i <= x + 1 ; i++) {
             for(let j = y - 1 ; j <= y + 1 ; j++) {
@@ -116,9 +104,7 @@ class Grid {
     }
 
     reveal(x, y) {
-        new Checker(x,'x').int().min(0).max(this.width - 1)
-        new Checker(y,'y').int().min(0).max(this.height - 1)
-        new Checker(this.map,'map').def()
+        const {x, y} = indexToCoord(indexX,indexY)
 
         if(this.map[y][x].isRevealed)
             return;
@@ -137,6 +123,24 @@ class Grid {
         }
 
         return this;
+    }
+
+    indexToCoord(indexX, indexY) {
+        new Checker(this.map,'map').def()
+        new Checker(this.width,'width').def()
+        new Checker(this.height,'height').def()
+        if(indexY !== undefined) {
+            new Checker(indexX,'indexX').required().int().between(0, this.width - 1)
+            new Checker(indexY,'indexY').required().int().between(0,this.height - 1)
+        } else {
+            new Checker(indexX,'indexX').required().int().between(0, this.height * this.width - 1)
+            new Checker(indexY,'indexY').undef()
+        }
+
+        let x = indexY ? indexX : Math.floor(indexX / this.width),
+            y = indexY ? indexY : indexX % this.width ;
+
+        return {x,y}
     }
 }
 
