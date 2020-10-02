@@ -106,10 +106,10 @@ class Grid {
     reveal(x, y) {
         const {x, y} = indexToCoord(indexX,indexY)
 
-        if(this.map[y][x].isRevealed)
+        if(this.map[x][y].isRevealed)
             return;
 
-        let nb = this.map[y][x].reveal()
+        let nb = this.map[x][y].reveal()
 
         if(nb == 0) {
             if(x > 0)
