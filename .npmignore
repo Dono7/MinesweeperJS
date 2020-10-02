@@ -1,6 +1,7 @@
 docker/
 doc/
 lib/
+demo/node_demo.js
+classes/client.js
 babel.config.json
-demo.html
 gulpfile.json
