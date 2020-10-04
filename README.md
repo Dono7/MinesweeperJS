@@ -13,12 +13,12 @@ This is an open source library, so can you can use it for free. You can also con
 
 ## Client-side : In the browser (in HTML page)
 
-### Online file with Github Raw
+### CDN (jsdelivr)
 
-We can use the direct link to the github file to import the script in the client-side (where you can set whatever version you want in the file name). This is possible since v0.3.1. Import it in your web page :
+We can use a link to the NPM package lib file to import the script in the client-side (where you can set whatever version you want in the file name). This is possible since v0.3.4. Import it in your web page :
 
 ```html
-<script src="https://raw.githubusercontent.com/Dono7/MinesweeperJS/master/lib/client-0.3.3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/play-minesweeperjs@0.3.4/lib/client.min.js"></script>
 ```
 
 Now you can play with the library in the console or in a script.
