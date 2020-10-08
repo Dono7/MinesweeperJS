@@ -1,4 +1,4 @@
-/* 
+/*
  * This file is used to concat, babelify, and minify the javascript files
  */
 
@@ -30,15 +30,16 @@ const header = `MinesweeperJS v${version} | by ${author} | Under ${license} Lice
 
 // Gulp task : JS
 function client(done) {
-    return browserify({ entries: [jsSRC + jsCLIENT] })
-    .transform( babelify, { presets: ['@babel/preset-env'] } )
+    return browserify({ entries: [jsSRC + jsCLIENT] }, {debug: true})
+    .transform( babelify, { presets: ['@babel/preset-env'], sourceMaps: true} )
     .bundle()
-    .pipe( source( jsCLIENT) )
+    .pipe( source(jsCLIENT) )
     .pipe( rename({ extname: `-${version}.min.js`}) )
     .pipe( buffer() )
+    .pipe( sourcemaps.init({loadMaps: true}))
     .pipe( uglify() )
     .pipe( injecter.prepend(`/* ${header} */\n`) )
-    .pipe( injecter.append(`\n`) )
+    .pipe( sourcemaps.write('.'))
     .pipe( dest( jsDEST ))
     console.log('Done : '+jsDEST)
     done()
