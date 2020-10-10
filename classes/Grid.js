@@ -14,7 +14,8 @@ class Grid {
         width = minGirdSize,
         height = minGirdSize,
         name = "Untitled",
-        nbbombs = 10
+        nbbombs = 10,
+        lives = 1
         } = {}
     ){
         // Check parameters
@@ -22,12 +23,16 @@ class Grid {
         new Checker(height,'width').int().between(minGirdSize, maxGirdSize)
         new Checker(name,'name').string().notEmpty()
         new Checker(nbbombs,'nbbomb').int().min(Math.max(1, Math.floor(width * height / 100)))
+        new Checker(lives, 'lives').int().between(1,nbbombs - 1)
 
         this.width = width
         this.height = height
         this.name = name
         this.nbbombs = nbbombs
-        this.areBombsSet = false;
+        this.lives = lives
+        this.areBombsSet = false
+        this.isEnded = false
+        this.isWon = false
     }
 
     initMap() {
@@ -106,10 +111,19 @@ class Grid {
     reveal(indexX, indexY) {
         const {x, y} = indexToCoord(indexX,indexY)
 
-        if(this.map[x][y].isRevealed)
-            return;
+        if(this.map[x][y].isRevealed || this.map[x][y].isFlaged)
+            return this;
 
         let nb = this.map[x][y].reveal()
+
+        if(this.map[x][y].isBomb) {
+            if(this.lives < 1) {
+                this.isWon = false
+                this.isEnded = true
+            } else {
+                this.lives--
+            }
+        }
 
         if(nb == 0) {
             if(x > 0)
