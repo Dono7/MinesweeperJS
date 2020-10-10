@@ -7,9 +7,12 @@ Learn how to use the MinesweeperJS library to play minesweeper in Javascript !
 - [Build your first grid](#build-your-first-grid)
 - [Initialize the map and display the grid in console](#initialize-the-map-and-display-the-grid-in-console)
 - [Generate the bombs](#generate-the-bombs)
-- [Reveal a cell](#reveal-a-cell)
+- [Reveal a cell (click on a cell)](#reveal-a-cell)
+- [Display complete version in console](#display-complete-version-in-console)
 
 Take a look at [the complete methods list](MethodsList.md) to know what it is possible to do with this library.
+
+If you do not know how to use coordinates, please take a look at the [How coordinates work](Coordinates.md) guide.
 
 ## Build your first grid
 
@@ -32,17 +35,16 @@ var g = new Grid({
 }); 
 ```
 
-## Initialize the map and the display grid in console
+## Initialize the map and display the grid in console
 
 When a grid is created, it is **not usable while the map has not been initialized**. 
-For the moment, you can only initialize a grid. In the futur, it will be possible to create a "custom map".
+For the moment, you can only initialize a rectangular grid. In the futur, it will be possible to create a "custom map".
 
 ```js
 // Build a default 9x9 grid
 var g = new Grid(); 
 g.initMap();
-g.show(); // Show the grid in the console. Cool bug debugging
-
+g.show(); // Show the grid in the console. Cool for debugging
 
 // All methods can be chained
 var g = new Grid( {nbbombs: 12, name: "My custom name"} ).initMap().show() ;
@@ -64,9 +66,10 @@ My custom name (9x9, 12 bombs)
 
 ## Generate the bombs 
 
-The game needs to have a position X and a position Y to start spawning bombs, because we want the first click not to hit a bomb. However, if we want to spawn bombs without the coordinates of the first click, we can use the `spawnRdmBombs()` method. This will randomly choose X and Y positions and start spawning bombs.
+We need to specify a position X and a position Y to start spawning bombs, because we want the first click not to hit a bomb. However, if we want to randomly spawn bombs, we can use the `spawnRdmBombs()` method. This will randomly choose a X and a Y position and start spawning bombs.
 ```js
-// Create an grid called 'Example', and spawn 12 bombs. The first cell (coord 0;0) cannot be a bomb because we specified that the user made the first click on this cell.
+// Create an grid called 'Example', and spawn 12 bombs. 
+// The first cell (coord 0;0) cannot be a bomb because we specified that the user made the first click on this cell.
 var g = new Grid( {nbbombs: 12, name: "Example"} ).initMap().spawnBombs(0,0).show();
 /* Result in console :
 
@@ -82,7 +85,8 @@ Example (9x9, 12 bombs)
 1 x 2 1 0 0 1 1 1  */
 
 
-// Create an grid called 'Example', and spawn 12 random bombs. Then show it in console
+// Create an grid called 'Example', and spawn 12 random bombs.
+// Then show it in console
 var g = new Grid( {nbbombs: 12, name: "Example"} ).initMap().spawnRdmBombs().show() ;
 
 /* Result in console :
@@ -100,11 +104,18 @@ x x 1 0 1 2 x 3 x
 ```
 ## Reveal a cell
 
-The 'click on a cell' action is called 'reveal' here. To reveal a cell, you can do it by 2 differents ways. 
-- Specify the index as if the grid was a unique array (for example, index 14 is the cell[1][5] on a cell 9x9 )
-- Specify the X and Y coordinates of the cell (for example, 1 and 5)
+The 'click on a cell' action is called 'reveal' here. 
 
-You can use the `reveal(x,y)` method to reveal a cell.
+```js
+// Create a new grid, spawn random bombs, then
+// Simulate a clic on the third cell of the first row
+var g = new Grid( {nbbombs: 12, name: "Example"} )
+    .initMap()
+    .spawnRdmBombs()
+    .reveal(0,2)
+```
+
+## Display complete version in console
 
 ```js
 // Use .show(true) to show the grid with indications about the revealed state
@@ -114,7 +125,7 @@ var g = new Grid( {nbbombs: 12, name: "Example"} )
     .initMap()
     .spawnRdmBombs()
     .show(true)
-    .reveal(0,2) // Simulate a click on line 0 col 2 (count from 0)
+    .reveal(0,2)
     .show(true) 
 
 /* Result in console
@@ -144,3 +155,6 @@ Example (9x9, 12 bombs)
 
 Please note that when the click hits an empty cell, the entire empty space around gets revealed. 
 
+## Go further
+
+For more advanced usage, please take a look at the [the complete methods list](MethodsList.md) to know what it is possible to do with this library.
