@@ -1,6 +1,6 @@
 # Methods List
 
-List of all the methods that can be used in this library. Cell and Checker class are not mentioned here since those classes are not necessary. They will become private (not directly usable) in the futur versions.
+List of all the methods that can be used in this library, on the Grid class.
 
 # Grid Class
 
@@ -8,7 +8,7 @@ List of all the methods that can be used in this library. Cell and Checker class
 - [initMap](#initMap)
 - [spawnBombs](#spawnBombs)
 - [spawnRdmBombs](#spawnRdmBombs)
-- [addBomb](#addbombs)
+- [addBomb](#addBomb)
 - [reveal](#reveal)
 - [show](#show)
 
@@ -19,8 +19,8 @@ List of all the methods that can be used in this library. Cell and Checker class
 ### Usage / Example :
 
 ```js
-new Grid()
-new Grid({ width:10, height:12, name:"Standart grid", nbbombs: 10})
+new Grid() // create default grid
+new Grid({ width:10, height:12, name:"Standart grid", nbbombs: 10}) // create custom grid
 ```
 
 ### Description :
@@ -65,7 +65,7 @@ Initialize the map of the Grid. **It is needed before using other methods**. The
 
 ### Note :
 
-In the futur, it will be possible to pass a map schema as parameter to create a custom grid.
+In the futur, it will be possible to pass a map schema as parameter to create a custom map, and not just a rectangular grid.
 
 ## spawnBombs
 
@@ -73,18 +73,20 @@ In the futur, it will be possible to pass a map schema as parameter to create a 
 
 ```js
 var g = new Grid({width:12, height:10}).initMap()
-g.spawnBombs(1,5)
+g.spawnBombs(1,5) 
 ```
 
 ### Description :
 
-Create bombs in the grid at random places. The cell where the user cliced for the first time cannot contains a bomb, this is why it is needed to specify the coordonates of the first clic.
+Create bombs in the grid at random places. The cell where the user clicked for the first time cannot contains a bomb, this is why it is needed to specify the coordonates of the first click. If you want to randomly spawn bombs without specific coordinates, see the [spawnRdmBombs](#spawnRdmBombs) method below.
 
-### Parameters (not optional) (order matters) :
+### Parameters *(required)* :
 
-- clickedX and clickedY, coordinates of the cell the user clicked (count from 0 !)
+- `clickedX` and `clickedY`, coordinates of the cell the user clicked. *index is supported*
 
-## spawnRmdBombs
+If you do not know how to use coordinates, please take a look at the [How coordinates work](Coordinates.md) guide.
+
+## spawnRdmBombs
 
 ### Usage / Example :
 
@@ -104,27 +106,19 @@ Create bombs in the grid, same as the spawnBombs method, except that this method
 ### Usage / Example :
 
 ```js
-// Add a bomb on second row, column 3 (count from 0)
 var g = new Grid({width:12}).initMap()
-g.addBomb(1,3)    
-
-// Add a bomb on first row, column 3 
-var g = new Grid({width:12}).initMap()
-g.addBomb(15)     
+g.addBomb(1,3)
 ```
 
 ### Description :
 
-Add a bomb in an empty cell. All the neighbour cells values increment. It is **not recommanded to use this method** since it is made to be used by the spawnBombs method.
+Add a bomb in an empty cell. All the neighbour cells values increment. It is **not recommanded to use this method** since it is made to be used by the spawnBombs method only.
 
-### Parameters (not optional) (order matters) :
+### Parameters *(required)* :
 
-- `X` and `Y`, coordinates where you want to add a bomb
-- OR `index`, index where you want to add a bomb 
+- `X` and `Y`, coordinates where you want to add a bomb. *index is supported*
 
-### Note :
-
-Both parameters are linked width the grid width : `index = X * width + Y`
+If you do not know how to use coordinates, please take a look at the [How coordinates work](Coordinates.md) guide.
 
 ## Reveal
 
@@ -137,11 +131,13 @@ g.reveal(1,3)
 
 ### Description
 
-Reveal a cell, the action of "clicking on a cell". If the value of the cell is 0, the 4 neighbour cells are revealed too.
+Reveal a cell, the action of "clicking on a cell". If the value of the cell is 0, the 4 neighbour cells are revealed too. This will reveal an entire empty zone if the user click in the middle of it.
 
-### Parameters (not optional) (order matters) :
+### Parameters *(required)* :
 
-- X and Y, coordinates where the user clicked
+- `clickedX` and `clickedY`, coordinates of the cell the user clicked. *index is supported*
+
+If you do not know how to use coordinates, please take a look at the [How coordinates work](Coordinates.md) guide.
 
 ## Show 
 
@@ -181,7 +177,8 @@ Standart grid (10x10, 10 bombs)
  0  1  1  1  0  0  0  0  1  x 
 */
 
-g.reveal(5,1) // User clic on cell col 5 row 1
+g.reveal(1,5) // User click on cell col 5 row 1
+
 g.show(true)
 /* Result in console :
 
@@ -205,6 +202,8 @@ Show the grid in the console. It displays the name, size and number of bombs in 
 
 ### Optional parameter :
 
-- `reveal` parameter (false by default) : If true, display a dash (-) character in front of every revealed cells. A space ( ) is displayed in front of every other cells.
+- `isRevealed` boolean parameter (false by default) : 
+
+If `isRevealed` is true, it will display a dash (-) character in front of every revealed cells. A space ( ) is displayed in front of every other cells.
 
 ## Enjoy :)
