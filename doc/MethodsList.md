@@ -78,7 +78,7 @@ g.spawnBombs(1,5)
 
 ### Description :
 
-Create bombs in the grid at random places. The cell where the user cliced for the first time cannot contains a bomb, this is why it is needed to specify the coordonates of the first clic.
+Create bombs in the grid at random places. The cell where the user clicked for the first time cannot contains a bomb, this is why it is needed to specify the coordonates of the first click.
 
 ### Parameters (not optional) (order matters) :
 
@@ -181,7 +181,7 @@ Standart grid (10x10, 10 bombs)
  0  1  1  1  0  0  0  0  1  x 
 */
 
-g.reveal(5,1) // User clic on cell col 5 row 1
+g.reveal(5,1) // User click on cell col 5 row 1
 g.show(true)
 /* Result in console :
 

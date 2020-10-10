@@ -64,7 +64,7 @@ My custom name (9x9, 12 bombs)
 
 ## Generate the bombs 
 
-The game needs to have a position X and a position Y to start spawning bombs, because we want the first clic not to hit a bomb. However, if we want to spawn bombs without the coordinates of the first clic, we can use the `spawnRdmBombs()` method. This will randomly choose X and Y positions and start spawning bombs.
+The game needs to have a position X and a position Y to start spawning bombs, because we want the first click not to hit a bomb. However, if we want to spawn bombs without the coordinates of the first click, we can use the `spawnRdmBombs()` method. This will randomly choose X and Y positions and start spawning bombs.
 ```js
 // Create an grid called 'Example', and spawn 12 bombs. The first cell (coord 0;0) cannot be a bomb because we specified that the user made the first click on this cell.
 var g = new Grid( {nbbombs: 12, name: "Example"} ).initMap().spawnBombs(0,0).show();
@@ -100,7 +100,7 @@ x x 1 0 1 2 x 3 x
 ```
 ## Reveal a cell
 
-The 'clic on a cell' action is called 'reveal' here. To reveal a cell, you can do it by 2 differents ways. 
+The 'click on a cell' action is called 'reveal' here. To reveal a cell, you can do it by 2 differents ways. 
 - Specify the index as if the grid was a unique array (for example, index 14 is the cell[1][5] on a cell 9x9 )
 - Specify the X and Y coordinates of the cell (for example, 1 and 5)
 
@@ -114,7 +114,7 @@ var g = new Grid( {nbbombs: 12, name: "Example"} )
     .initMap()
     .spawnRdmBombs()
     .show(true)
-    .reveal(0,2) // Simulate a clic on line 0 col 2 (count from 0)
+    .reveal(0,2) // Simulate a click on line 0 col 2 (count from 0)
     .show(true) 
 
 /* Result in console
@@ -142,5 +142,5 @@ Example (9x9, 12 bombs)
  0  0  1  1  1  0  1  1  1 
 ```
 
-Please note that when the clic hits an empty cell, the entire empty space around gets revealed. 
+Please note that when the click hits an empty cell, the entire empty space around gets revealed. 
 
