@@ -79,7 +79,7 @@ g.spawnBombs(1,5)
 ### Description :
 
 Create bombs in the grid at random places. The cell where the user clicked for the first time cannot contains a bomb, this is why it is needed to specify the coordonates of the first click. If you want to randomly spawn bombs without specific coordinates, see the [spawnRdmBombs](#spawnRdmBombs) method below.
-W
+
 ### Parameters *(required)* :
 
 - `clickedX` and `clickedY`, coordinates of the cell the user clicked. *index is supported*
