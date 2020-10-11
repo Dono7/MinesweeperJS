@@ -32,6 +32,7 @@ var g = new Grid({
     height: 10,             // Grid height
     name: "An easy grid",   // Grid name
     nbbombs: 10             // Grid bombs number
+    lives: 0                // Extra lives
 }); 
 ```
 
@@ -131,6 +132,7 @@ var g = new Grid( {nbbombs: 12, name: "Example"} )
 /* Result in console
 
 Example (9x9, 12 bombs) 
+Lives left : 0 , Flags : 0 
  0  0  0  0  0  0  1  1  1 
  0  0  0  0  0  0  1  x  1 
  0  0  1  2  2  1  1  1  1 
@@ -141,7 +143,9 @@ Example (9x9, 12 bombs)
  0  0  1  x  2  2  3  x  2 
  0  0  1  1  1  0  1  1  1 
 
- Example (9x9, 12 bombs) 
+Example (9x9, 12 bombs) 
+Lives left : 0 , Flags : 0 
+Game Over : Lost :( 
 -0 -0 -0 -0 -0 -0 -1  1  1 
 -0 -0 -0 -0 -0 -0 -1  x  1 
 -0 -0 -1 -2 -2 -1  1  1  1 
