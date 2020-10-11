@@ -93,6 +93,8 @@ class Grid {
         new Checker(this.map,'map').def()
 
         let output = `${this.name} (${this.width}x${this.height}, ${this.nbbombs} bombs) \n`
+        +`Lives left : ${this.lives} , Flags : ${this.flaggedCells.length} \n`
+        output += (this.isEnded) ? `Game Over : ${this.isWon ? "Won ! :)" : "Lost :("} \n` : ""
         this.map.forEach( line => { 
             line.forEach(c => {
                 if(reveal) {
