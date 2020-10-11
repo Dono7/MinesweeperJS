@@ -34,7 +34,7 @@ function client(done) {
     .transform( babelify, { presets: ['@babel/preset-env'] } )
     .bundle()
     .pipe( source( jsCLIENT) )
-    .pipe( rename({ extname: `-${version}.min.js`}) )
+    .pipe( rename({ extname: `.min.js`}) )
     .pipe( buffer() )
     .pipe( uglify() )
     .pipe( injecter.prepend(`/* ${header} */\n`) )
