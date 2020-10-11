@@ -6,7 +6,7 @@ class Cell {
     constructor(){
         this.isRevealed = false
         this.isBomb = false
-        this.isFlaged = false
+        this.isFlagged = false
         this.nb = 0
     }
 
@@ -15,8 +15,7 @@ class Cell {
     bomb() { this.isBomb = true }
     unbomb() { this.isBomb = false }
     reveal() { this.isRevealed = true ; return this.nb }
-    toggleReveal() { this.isRevealed = !this.isRevealed }
-    toggleFlag() { this.isRevealed = !this.isRevealed }
+    toggleFlag() { this.isFlagged = !this.isFlagged }
 
 }
 

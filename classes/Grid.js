@@ -20,7 +20,7 @@ class Grid {
         new Checker(height,'width').int().between(minGirdSize, maxGirdSize)
         new Checker(name,'name').string().notEmpty()
         new Checker(nbbombs,'nbbomb').int().min(Math.max(1, Math.floor(width * height / 100)))
-        new Checker(lives, 'lives').int().between(1,nbbombs - 1)
+        new Checker(lives, 'lives').int().between(0,nbbombs - 1)
 
         this.width = width
         this.height = height
@@ -96,7 +96,7 @@ class Grid {
         this.map.forEach( line => { 
             line.forEach(c => {
                 if(reveal) {
-                    output += c.isRevealed ? "-" : " "
+                    output += c.isRevealed ? "-" : (c.isFlagged ? "*" : " ")
                 }
                 output += c.isBomb ? "x " : c.nb + " "
             })
@@ -110,7 +110,7 @@ class Grid {
     reveal(indexX, indexY) {
         const {x, y} = this.indexToCoord(indexX,indexY)
 
-        if(this.map[x][y].isRevealed || this.map[x][y].isFlaged)
+        if(this.map[x][y].isRevealed || this.map[x][y].isFlagged)
             return this;
 
         let nb = this.map[x][y].reveal()
@@ -155,6 +155,22 @@ class Grid {
         }
 
         return this;
+    }
+
+    flag(indexX, indexY) {
+        if(this.flaggedCells.length >= this.nbbombs)
+            return this
+
+        const {x, y} = this.indexToCoord(indexX,indexY)
+
+        if(this.map[x][y].isFlagged)
+            this.flaggedCells = this.flaggedCells.filter(c => ! (c.x == x && c.y == y))
+        else
+            this.flaggedCells.push({x,y})
+        
+        this.map[x][y].toggleFlag()
+
+        return this
     }
 
     indexToCoord(indexX, indexY) {
