@@ -8,17 +8,14 @@ const maxGirdSize = 1000
 
 class Grid {
 
-    // Should handle param errors
-    // Every param is optional
     constructor({
         width = minGirdSize,
         height = minGirdSize,
         name = "Untitled",
         nbbombs = 10,
-        lives = 1
+        lives = 0
         } = {}
     ){
-        // Check parameters
         new Checker(width,'width').int().between(minGirdSize, maxGirdSize)
         new Checker(height,'width').int().between(minGirdSize, maxGirdSize)
         new Checker(name,'name').string().notEmpty()
@@ -33,6 +30,8 @@ class Grid {
         this.areBombsSet = false
         this.isEnded = false
         this.isWon = false
+        this.revealedCells = 0
+        this.flaggedCells = []
     }
 
     initMap() {
@@ -41,7 +40,7 @@ class Grid {
     }
 
     spawnBombs(clickedX, clickedY) {
-        const {x, y} = indexToCoord(clickedX,clickedY)
+        const {x, y} = this.indexToCoord(clickedX,clickedY)
 
         if(this.areBombsSet) 
             return this;
@@ -75,7 +74,7 @@ class Grid {
     }
 
     addBomb(indexX, indexY) {
-        const {x, y} = indexToCoord(indexX,indexY)
+        const {x, y} = this.indexToCoord(indexX,indexY)
         
         for(let i = x - 1 ; i <= x + 1 ; i++) {
             for(let j = y - 1 ; j <= y + 1 ; j++) {
@@ -109,13 +108,14 @@ class Grid {
     }
 
     reveal(indexX, indexY) {
-        const {x, y} = indexToCoord(indexX,indexY)
+        const {x, y} = this.indexToCoord(indexX,indexY)
 
         if(this.map[x][y].isRevealed || this.map[x][y].isFlaged)
             return this;
 
         let nb = this.map[x][y].reveal()
 
+        // Loose life if bomb
         if(this.map[x][y].isBomb) {
             if(this.lives < 1) {
                 this.isWon = false
@@ -123,8 +123,11 @@ class Grid {
             } else {
                 this.lives--
             }
+        } else {
+            this.revealedCells++
         }
 
+        // Reveal other cells if cell exists
         if(nb == 0) {
             if(x > 0)
                 this.reveal(x-1,y)
@@ -134,6 +137,21 @@ class Grid {
                 this.reveal(x+1,y)
             if(y < this.height - 1)
                 this.reveal(x,y+1)
+        }
+
+        // Check if game is won or lost
+        if(this.revealedCells >= this.width * this.height - this.nbbombs) {
+            this.isWon = true
+            this.isEnded = true
+        }
+
+        if(this.flaggedCells.length == this.nbbombs) {
+            let allFlagsAreBomb = true
+            this.flaggedCells.forEach(c => { allFlagsAreBomb = allFlagsAreBomb && this.map[c.x][c.y].isBomb })
+            if(allFlagsAreBomb) {
+                this.isWon = true
+                this.isEnded = true
+            }
         }
 
         return this;
