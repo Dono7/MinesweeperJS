@@ -8,26 +8,30 @@ const maxGirdSize = 1000
 
 class Grid {
 
-    // Should handle param errors
-    // Every param is optional
     constructor({
         width = minGirdSize,
         height = minGirdSize,
         name = "Untitled",
-        nbbombs = 10
+        nbbombs = 10,
+        lives = 0
         } = {}
     ){
-        // Check parameters
         new Checker(width,'width').int().between(minGirdSize, maxGirdSize)
         new Checker(height,'width').int().between(minGirdSize, maxGirdSize)
         new Checker(name,'name').string().notEmpty()
         new Checker(nbbombs,'nbbomb').int().min(Math.max(1, Math.floor(width * height / 100)))
+        new Checker(lives, 'lives').int().between(0,nbbombs - 1)
 
         this.width = width
         this.height = height
         this.name = name
         this.nbbombs = nbbombs
-        this.areBombsSet = false;
+        this.lives = lives
+        this.areBombsSet = false
+        this.isEnded = false
+        this.isWon = false
+        this.revealedCells = 0
+        this.flaggedCells = []
     }
 
     initMap() {
@@ -36,7 +40,7 @@ class Grid {
     }
 
     spawnBombs(clickedX, clickedY) {
-        const {x, y} = indexToCoord(clickedX,clickedY)
+        const {x, y} = this.indexToCoord(clickedX,clickedY)
 
         if(this.areBombsSet) 
             return this;
@@ -70,7 +74,7 @@ class Grid {
     }
 
     addBomb(indexX, indexY) {
-        const {x, y} = indexToCoord(indexX,indexY)
+        const {x, y} = this.indexToCoord(indexX,indexY)
         
         for(let i = x - 1 ; i <= x + 1 ; i++) {
             for(let j = y - 1 ; j <= y + 1 ; j++) {
@@ -89,10 +93,12 @@ class Grid {
         new Checker(this.map,'map').def()
 
         let output = `${this.name} (${this.width}x${this.height}, ${this.nbbombs} bombs) \n`
+        +`Lives left : ${this.lives} , Flags : ${this.flaggedCells.length} \n`
+        output += (this.isEnded) ? `Game Over : ${this.isWon ? "Won ! :)" : "Lost :("} \n` : ""
         this.map.forEach( line => { 
             line.forEach(c => {
                 if(reveal) {
-                    output += c.isRevealed ? "-" : " "
+                    output += c.isRevealed ? "-" : (c.isFlagged ? "*" : " ")
                 }
                 output += c.isBomb ? "x " : c.nb + " "
             })
@@ -104,13 +110,26 @@ class Grid {
     }
 
     reveal(indexX, indexY) {
-        const {x, y} = indexToCoord(indexX,indexY)
+        const {x, y} = this.indexToCoord(indexX,indexY)
 
-        if(this.map[x][y].isRevealed)
-            return;
+        if(this.map[x][y].isRevealed || this.map[x][y].isFlagged)
+            return this;
 
         let nb = this.map[x][y].reveal()
 
+        // Loose life if bomb
+        if(this.map[x][y].isBomb) {
+            if(this.lives < 1) {
+                this.isWon = false
+                this.isEnded = true
+            } else {
+                this.lives--
+            }
+        } else {
+            this.revealedCells++
+        }
+
+        // Reveal other cells if cell exists
         if(nb == 0) {
             if(x > 0)
                 this.reveal(x-1,y)
@@ -122,7 +141,38 @@ class Grid {
                 this.reveal(x,y+1)
         }
 
+        // Check if game is won or lost
+        if(this.revealedCells >= this.width * this.height - this.nbbombs) {
+            this.isWon = true
+            this.isEnded = true
+        }
+
+        if(this.flaggedCells.length == this.nbbombs) {
+            let allFlagsAreBomb = true
+            this.flaggedCells.forEach(c => { allFlagsAreBomb = allFlagsAreBomb && this.map[c.x][c.y].isBomb })
+            if(allFlagsAreBomb) {
+                this.isWon = true
+                this.isEnded = true
+            }
+        }
+
         return this;
+    }
+
+    flag(indexX, indexY) {
+        if(this.flaggedCells.length >= this.nbbombs)
+            return this
+
+        const {x, y} = this.indexToCoord(indexX,indexY)
+
+        if(this.map[x][y].isFlagged)
+            this.flaggedCells = this.flaggedCells.filter(c => ! (c.x == x && c.y == y))
+        else
+            this.flaggedCells.push({x,y})
+        
+        this.map[x][y].toggleFlag()
+
+        return this
     }
 
     indexToCoord(indexX, indexY) {
