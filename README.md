@@ -9,6 +9,10 @@ It is efficent and easy to install and use. Ideal to start a basic web game, for
 
 This is an open source library, so can you can use it for free. You can also contribute, suggest improvements, or report a bug.  If you like this project, please Star it, so that we can reach 
 
+# WARNING
+
+**This package has been renamed and is noz deprecated. Please refer to the [`minesweeperjs`](https://www.npmjs.com/package/minesweeperjs) NPM package.**
+
 # Installation
 
 ## Client-side : In the browser (in HTML page)
