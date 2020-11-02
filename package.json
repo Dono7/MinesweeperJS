@@ -1,7 +1,7 @@
 {
-  "name": "play-minesweeperjs",
+  "name": "minesweeperjs",
   "description": "Free minesweeper javascript library. Easy to use and efficent Minesweeper javascript library",
-  "version": "0.5.0-deprecated",
+  "version": "0.6.0",
   "main": "app_entry.js",
   "scripts": {
     "build": "gulp",
