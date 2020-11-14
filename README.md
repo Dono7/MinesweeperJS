@@ -1,4 +1,4 @@
-[![npm](https://img.shields.io/npm/v/play-minesweeperjs?style=flat)](https://www.npmjs.com/package/play-minesweeperjs)
+[![npm](https://img.shields.io/npm/v/minesweeperjs?style=flat)](https://www.npmjs.com/package/minesweeperjs)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Dono7/MinesweeperJS?style=flat)](https://github.com/Dono7/MinesweeperJS)
 [![GitHub issues](https://img.shields.io/github/issues/Dono7/MinesweeperJS?style=flat)](https://github.com/Dono7/MinesweeperJS/issues)
 
@@ -15,10 +15,10 @@ This is an open source library, so can you can use it for free. You can also con
 
 ### CDN (jsdelivr)
 
-We can use a link to the NPM package lib file to import the script in the client-side (where you can set whatever version you want in the file name). This is possible since v0.3.4. Import it in your web page :
+We can use a link to the NPM package lib file to import the script in the client-side (where you can set whatever version you want in the file name, since v0.6.0). Import it in your web page :
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/play-minesweeperjs@0.3.4/lib/client.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/minesweeperjs@1.0.1/lib/client.min.js"></script>
 ```
 
 Now you can play with the library in the console or in a script.
@@ -28,17 +28,17 @@ Now you can play with the library in the console or in a script.
 You can also download the last version in the [lib](lib/) folder, and then import it in your project. Then, link it as a script in the head of your HTML file.
  
 ## Server-side: With NPM
-For the moment, the package is called `play-minesweeperjs`. You can install it in a Node project with the following command :
+For the moment, the package is called `minesweeperjs`. You can install it in a Node project with the following command :
 ```bash
-npm install play-minesweeperjs
+npm install minesweeperjs
 ```
 Then, import it in your project (in a Javascript file)
 ```js
 // Just what you need
-const { Grid } = require('play-minesweeperjs')
+const { Grid } = require('minesweeperjs')
 
 // Or all fonctions and classes
-const { Grid, Cell, Checker, MsInstalled } = require('play-minesweeperjs')
+const { Grid, Cell, Checker, MsInstalled } = require('minesweeperjs')
 ```
 Now, you can use Grid as a class in Node.
 
