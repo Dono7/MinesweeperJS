@@ -18,7 +18,7 @@ This is an open source library, so can you can use it for free. You can also con
 We can use a link to the NPM package lib file to import the script in the client-side (where you can set whatever version you want in the file name, since v0.6.0). Import it in your web page :
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/minesweeperjs@0.6.0/lib/client.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/minesweeperjs@1.0.1/lib/client.min.js"></script>
 ```
 
 Now you can play with the library in the console or in a script.
