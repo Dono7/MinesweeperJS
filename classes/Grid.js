@@ -131,14 +131,24 @@ class Grid {
 
         // Reveal other cells if cell exists
         if(nb == 0) {
-            if(x > 0)
+            if(x > 0) {
                 this.reveal(x-1,y)
-            if(y > 0)
-                this.reveal(x,y-1)
-            if(x < this.width - 1)
+                if(y > 0) {
+                    this.reveal(x,y-1)
+                    this.reveal(x-1,y-1)
+                }
+                if(y < this.height - 1) {
+                    this.reveal(x,y+1)
+                    this.reveal(x-1,y+1)
+                }
+            }
+            if(x < this.width - 1) {
                 this.reveal(x+1,y)
-            if(y < this.height - 1)
-                this.reveal(x,y+1)
+                if(y > 0)
+                    this.reveal(x+1,y-1)
+                if(y < this.height - 1)
+                    this.reveal(x+1,y+1)
+            }
         }
 
         // Check if game is won or lost
@@ -187,8 +197,8 @@ class Grid {
             new Checker(indexY,'indexY').undef()
         }
 
-        let x = indexY ? indexX : Math.floor(indexX / this.width),
-            y = indexY ? indexY : indexX % this.width ;
+        let x = indexY !== undefined ? indexX : Math.floor(indexX / this.width),
+            y = indexY !== undefined ? indexY : indexX % this.width ;
 
         return {x,y}
     }
