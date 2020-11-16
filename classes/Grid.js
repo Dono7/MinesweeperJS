@@ -84,7 +84,7 @@ class Grid {
             }
         }
 
-        this.map[x][y].bomb()
+        this.map[y][x].bomb()
         return this;
     }
 
@@ -116,13 +116,13 @@ class Grid {
             this.spawnBombs(x,y)
         }
 
-        if(this.map[x][y].isRevealed || this.map[x][y].isFlagged)
+        if(this.map[y][x].isRevealed || this.map[y][x].isFlagged)
             return this;
 
-        let nb = this.map[x][y].reveal()
+        let nb = this.map[y][x].reveal()
 
         // Loose life if bomb
-        if(this.map[x][y].isBomb) {
+        if(this.map[y][x].isBomb) {
             if(this.lives < 1) {
                 this.isWon = false
                 this.isEnded = true
@@ -163,7 +163,7 @@ class Grid {
 
         if(this.flaggedCells.length == this.nbbombs) {
             let allFlagsAreBomb = true
-            this.flaggedCells.forEach(c => { allFlagsAreBomb = allFlagsAreBomb && this.map[c.x][c.y].isBomb })
+            this.flaggedCells.forEach(c => { allFlagsAreBomb = allFlagsAreBomb && this.map[c.y][c.x].isBomb })
             if(allFlagsAreBomb) {
                 this.isWon = true
                 this.isEnded = true
@@ -179,12 +179,12 @@ class Grid {
 
         const {x, y} = this.indexToCoord(indexX,indexY)
 
-        if(this.map[x][y].isFlagged)
+        if(this.map[y][x].isFlagged)
             this.flaggedCells = this.flaggedCells.filter(c => ! (c.x == x && c.y == y))
         else
             this.flaggedCells.push({x,y})
         
-        this.map[x][y].toggleFlag()
+        this.map[y][x].toggleFlag()
 
         return this
     }
