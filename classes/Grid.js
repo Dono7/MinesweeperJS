@@ -78,13 +78,13 @@ class Grid {
         
         for(let i = x - 1 ; i <= x + 1 ; i++) {
             for(let j = y - 1 ; j <= y + 1 ; j++) {
-                if(i >= 0 && j >= 0 && i < this.height && j < this.width && !(i == x && j == y)) {
-                    this.map[i][j].inc()
+                if(i >= 0 && j >= 0 && i < this.width && j < this.height && !(i == x && j == y)) {
+                    this.map[j][i].inc()
                 }
             }
         }
 
-        this.map[x][y].bomb()
+        this.map[y][x].bomb()
         return this;
     }
 
@@ -112,13 +112,17 @@ class Grid {
     reveal(indexX, indexY) {
         const {x, y} = this.indexToCoord(indexX,indexY)
 
-        if(this.map[x][y].isRevealed || this.map[x][y].isFlagged)
+        if(!this.areBombsSet) {
+            this.spawnBombs(x,y)
+        }
+
+        if(this.map[y][x].isRevealed || this.map[y][x].isFlagged)
             return this;
 
-        let nb = this.map[x][y].reveal()
+        let nb = this.map[y][x].reveal()
 
         // Loose life if bomb
-        if(this.map[x][y].isBomb) {
+        if(this.map[y][x].isBomb) {
             if(this.lives < 1) {
                 this.isWon = false
                 this.isEnded = true
@@ -131,14 +135,24 @@ class Grid {
 
         // Reveal other cells if cell exists
         if(nb == 0) {
-            if(x > 0)
+            if(x > 0) {
                 this.reveal(x-1,y)
-            if(y > 0)
-                this.reveal(x,y-1)
-            if(x < this.width - 1)
+                if(y > 0) {
+                    this.reveal(x,y-1)
+                    this.reveal(x-1,y-1)
+                }
+                if(y < this.height - 1) {
+                    this.reveal(x,y+1)
+                    this.reveal(x-1,y+1)
+                }
+            }
+            if(x < this.width - 1) {
                 this.reveal(x+1,y)
-            if(y < this.height - 1)
-                this.reveal(x,y+1)
+                if(y > 0)
+                    this.reveal(x+1,y-1)
+                if(y < this.height - 1)
+                    this.reveal(x+1,y+1)
+            }
         }
 
         // Check if game is won or lost
@@ -149,7 +163,7 @@ class Grid {
 
         if(this.flaggedCells.length == this.nbbombs) {
             let allFlagsAreBomb = true
-            this.flaggedCells.forEach(c => { allFlagsAreBomb = allFlagsAreBomb && this.map[c.x][c.y].isBomb })
+            this.flaggedCells.forEach(c => { allFlagsAreBomb = allFlagsAreBomb && this.map[c.y][c.x].isBomb })
             if(allFlagsAreBomb) {
                 this.isWon = true
                 this.isEnded = true
@@ -165,12 +179,12 @@ class Grid {
 
         const {x, y} = this.indexToCoord(indexX,indexY)
 
-        if(this.map[x][y].isFlagged)
+        if(this.map[y][x].isFlagged)
             this.flaggedCells = this.flaggedCells.filter(c => ! (c.x == x && c.y == y))
         else
             this.flaggedCells.push({x,y})
         
-        this.map[x][y].toggleFlag()
+        this.map[y][x].toggleFlag()
 
         return this
     }
@@ -187,8 +201,8 @@ class Grid {
             new Checker(indexY,'indexY').undef()
         }
 
-        let x = indexY ? indexX : Math.floor(indexX / this.width),
-            y = indexY ? indexY : indexX % this.width ;
+        let x = indexY !== undefined ? indexX : indexX % this.width,
+            y = indexY !== undefined ? indexY : Math.floor(indexX / this.width)
 
         return {x,y}
     }

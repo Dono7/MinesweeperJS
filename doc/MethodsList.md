@@ -62,7 +62,7 @@ g.initMap()
 
 ### Description :
 
-Initialize the map of the Grid. **It is needed before using other methods**. The map doesnt exists in the Grid object before using this method.
+Initialize the map of the Grid. **It is required before using other methods**. The map doesnt exists in the Grid object before using this method.
 
 *No possible parameters*
 
@@ -203,8 +203,8 @@ Lives left : 0 , Flags : 0
  0  1  1  1  0  0  0  0  1  x 
 */
 
-g.reveal(1,5) // User click on cell col 5 row 1
-g.flag(0,1) // User flag cell first row col 1
+g.reveal(5,1) // User click on the fifth cell of the second row
+g.flag(1,0) // User flag second cell of first row
 
 g.show(true)
 /* Result in console :

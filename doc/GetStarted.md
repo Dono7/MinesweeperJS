@@ -145,7 +145,6 @@ Lives left : 0 , Flags : 0
 
 Example (9x9, 12 bombs) 
 Lives left : 0 , Flags : 0 
-Game Over : Lost :( 
 -0 -0 -0 -0 -0 -0 -1  1  1 
 -0 -0 -0 -0 -0 -0 -1  x  1 
 -0 -0 -1 -2 -2 -1  1  1  1 
