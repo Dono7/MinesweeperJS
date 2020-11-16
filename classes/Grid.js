@@ -197,8 +197,8 @@ class Grid {
             new Checker(indexY,'indexY').undef()
         }
 
-        let x = indexY !== undefined ? indexX : Math.floor(indexX / this.width),
-            y = indexY !== undefined ? indexY : indexX % this.width ;
+        let x = indexY !== undefined ? indexX : indexX % this.width,
+            y = indexY !== undefined ? indexY : Math.floor(indexX / this.width)
 
         return {x,y}
     }
