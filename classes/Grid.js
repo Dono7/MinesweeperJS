@@ -78,8 +78,8 @@ class Grid {
         
         for(let i = x - 1 ; i <= x + 1 ; i++) {
             for(let j = y - 1 ; j <= y + 1 ; j++) {
-                if(i >= 0 && j >= 0 && i < this.height && j < this.width && !(i == x && j == y)) {
-                    this.map[i][j].inc()
+                if(i >= 0 && j >= 0 && i < this.width && j < this.height && !(i == x && j == y)) {
+                    this.map[j][i].inc()
                 }
             }
         }
