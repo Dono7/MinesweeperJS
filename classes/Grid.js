@@ -112,6 +112,10 @@ class Grid {
     reveal(indexX, indexY) {
         const {x, y} = this.indexToCoord(indexX,indexY)
 
+        if(!this.areBombsSet) {
+            this.spawnBombs(x,y)
+        }
+
         if(this.map[x][y].isRevealed || this.map[x][y].isFlagged)
             return this;
 
